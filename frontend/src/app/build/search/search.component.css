@@ -1,0 +1,58 @@
+/* search */
+.search-container {
+    caret-color: black;
+    margin: auto;
+    z-index: 10;
+    margin-top: 70px;
+    background: var(--banner-background);
+    padding: 15px;
+    border-left: solid 3px var(--banner-border);
+    border-right: solid 3px var(--banner-border);
+    border-bottom: solid 3px var(--banner-border);
+    box-shadow: 0 3px var(--banner-shadow);
+}
+
+.search-container input {
+    padding: 0;
+    height: 35px;
+    padding: 5px;
+    border-radius: 0;
+    margin-top: 3px;
+}
+
+.search-btn {
+    padding: 5px;
+    font-size: 0px;
+    margin-left: 5px !important;
+}
+
+.search-container .form-control {
+    border: solid 2px var(--search-bar-border);
+}
+
+.card-results {
+    z-index: 10;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.deck-card-wrapper {
+    z-index: 5;
+    position: relative;
+}
+
+.card-img {
+    width: 200px !important;
+    height: auto;
+    margin: 5px;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s;
+    z-index: 5;
+    border: solid 2px var(--deck-card-border);
+}
+
+.card-img:hover {
+    transform: scale(1.05);
+}

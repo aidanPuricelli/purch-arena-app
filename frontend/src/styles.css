@@ -1,0 +1,654 @@
+:root.light-theme {
+    --nav-background: rgb(244, 232, 225);
+    --nav-border: rgb(240, 151, 43);
+    --dots-one: rgb(255, 223, 186);
+    --dots-two: rgb(235, 235, 235);
+    --quick-start-label: rgb(185, 156, 123);
+    --quick-start-label-border: rgb(252, 214, 188);
+    --btn-border: rgb(234, 181, 118);
+    --btn-shadow: rgb(112, 77, 47);
+    --btn-background: rgb(227, 227, 227);
+    --btn-color: rgb(150, 124, 87);
+    --btn-hover: rgb(248, 227, 197);
+    --home-header: rgb(78, 63, 50);
+
+    --hand-background: rgb(213, 195, 173);
+    --hand-border: rgb(226, 171, 115);
+    --hand-shadow: transparent;
+
+    --settings-icon: rgb(100, 100, 100);
+    --settings-option-color: rgb(124, 98, 77);
+    --version-border: rgb(185, 175, 167);
+    --version-color: rgb(225, 201, 173);
+    --version-background: rgb(152, 137, 115);
+    --version-hover: rgb(152, 137, 115);
+
+    --hand-tab-background: black;
+    --hand-tab-border: white;
+    --hand-tab-color: rgb(166, 237, 255);
+
+    --setting-drpdwn-background: rgb(228, 212, 195);
+    --setting-drpdwn-shadow: rgb(97, 75, 43);
+    --setting-drpdwn-border: rgb(188, 143, 103);
+
+    --banner-background:rgb(236, 224, 212);
+    --banner-border: rgb(224, 195, 155);
+    --banner-shadow: rgb(118, 96, 81);
+    --error-background: rgb(243, 198, 198);
+    --error-border: rgb(255, 127, 127);
+    --error-shadow: rgb(180, 47, 47);
+    --error-color: rgb(125, 82, 82);
+    --deck-name-input-border: rgb(223, 182, 128);
+    --deck-name-input-background: rgb(227, 227, 227);
+    --deck-name-input-color: rgb(71, 65, 60);
+    --deck-card-border: transparent;
+    --card-num-color: rgb(105, 96, 89);
+    --search-bar-border: rgb(190, 161, 123);
+
+    --release-text-color: rgb(49, 47, 46);
+    --release-background: rgb(190, 202, 189);
+    --release-border: rgb(255, 210, 180);
+
+    --quick-start-background: rgb(225, 210, 195);
+    --quick-start-border: rgb(116, 101, 88);
+    --quick-start-header-border: rgb(137, 129, 116);
+    --how-to-background: rgb(208, 185, 172);
+    --how-to-content-background: rgb(224, 211, 196);
+    --how-to-content-border: rgb(175, 154, 134);
+    --notice-background: rgb(218, 143, 143);
+    --notice-border: rgb(141, 62, 62);
+
+    --play-set-icon: rgb(200, 179, 159);
+    --play-options-background: rgb(106, 98, 90);
+    --play-options-border: rgb(255, 220, 171);
+    --play-options-shadow: rgb(134, 117, 91);
+    --play-options-color: rgb(255, 227, 189);
+    --font-size-color: rgb(91, 83, 73);
+    --font-size-border: rgb(188, 168, 141);
+    --adv-option-color: rgb(223, 213, 188);
+    --adv-option-background: rgb(134, 126, 107);
+    --adv-option-hover-color: rgb(240, 231, 219);
+    --adv-option-hover-background: rgb(134, 126, 107);
+    --graveyard-background: #cbbaaf;
+    --graveyard-border: #877c74;
+    --counter-background: rgb(255, 186, 103);
+    --counter-color: rgb(104, 91, 69);
+    --selection-border: rgba(255, 123, 0, 0.7);
+    --selection-background: rgba(255, 145, 0, 0.2);
+    --selected-border: rgb(255, 145, 0);
+}
+
+/* :root.dark-theme {
+    --nav-background: rgb(71, 66, 63);
+    --nav-border: rgb(255, 220, 177);
+    --dots-one: rgb(44, 43, 40);
+    --dots-two: rgb(23, 23, 22);
+    --quick-start-label: rgb(84, 76, 68);
+    --quick-start-label-border: rgb(252, 214, 188);
+    --btn-border: rgb(244, 211, 170);
+    --btn-shadow: rgb(177, 141, 109);
+    --btn-background: rgb(79, 74, 70);
+    --btn-color: rgb(232, 217, 197);
+    --btn-hover: rgb(156, 145, 129);
+    --home-header: rgb(195, 183, 171);
+
+    --hand-background: rgb(71, 67, 62);
+    --hand-border: rgb(213, 183, 153);
+    --hand-shadow: rgb(255, 193, 122);
+
+    --settings-icon: rgb(169, 169, 169);
+    --settings-option-color: rgb(206, 190, 176);
+    --settings-option-hover: rgb(102, 94, 90);
+    --version-border: rgb(185, 175, 167);
+    --version-color: rgb(227, 214, 198);
+    --version-background: rgb(113, 107, 98);
+    --version-hover: rgb(113, 107, 98);
+
+    --hand-tab-background: black;
+    --hand-tab-border: white;
+    --hand-tab-color: rgb(166, 237, 255);
+
+    --setting-drpdwn-background: rgb(85, 80, 75);
+    --setting-drpdwn-shadow: rgb(97, 75, 43);
+    --setting-drpdwn-border: rgb(188, 143, 103);
+
+    --banner-background:rgb(57, 53, 48);
+    --banner-border: rgb(224, 195, 155);
+    --banner-shadow: rgb(118, 96, 81);
+    --error-background: rgb(168, 98, 98);
+    --error-border: rgb(255, 127, 127);
+    --error-shadow: rgb(180, 47, 47);
+    --error-color: rgb(226, 191, 191);
+    --deck-name-input-border: rgb(223, 182, 128);
+    --deck-name-input-background: rgb(227, 227, 227);
+    --deck-name-input-color: rgb(71, 65, 60);
+    --deck-card-border: transparent;
+    --card-num-color: rgb(105, 96, 89);
+    --search-bar-border: rgb(190, 161, 123);
+
+    --release-text-color: rgb(198, 183, 175);
+    --release-background: rgb(43, 42, 39);
+    --release-border: rgb(218, 187, 168);
+
+    --quick-start-background: rgb(62, 59, 55);
+    --quick-start-border: rgb(192, 170, 151);
+    --quick-start-header-border: rgb(104, 98, 88);
+    --how-to-background: rgb(32, 30, 28);
+    --how-to-content-background: rgb(115, 109, 101);
+    --how-to-content-border: rgb(147, 137, 128);
+    --how-to-color: rgb(232, 226, 220);
+    --notice-background: rgb(218, 143, 143);
+    --notice-border: rgb(141, 62, 62);
+    --notice-color: rgb(53, 44, 44);
+
+    --play-set-icon: rgb(200, 179, 159);
+    --play-options-background: rgb(106, 98, 90);
+    --play-options-border: rgb(255, 220, 171);
+    --play-options-shadow: rgb(134, 117, 91);
+    --play-options-color: rgb(255, 227, 189);
+    --font-size-color: rgb(207, 192, 172);
+    --font-size-border: rgb(188, 168, 141);
+    --adv-option-color: rgb(223, 213, 188);
+    --adv-option-background: rgb(134, 126, 107);
+    --adv-option-hover-color: rgb(240, 231, 219);
+    --adv-option-hover-background: rgb(134, 126, 107);
+    --graveyard-background: #484441;
+    --graveyard-border: #bdafa4;
+    --counter-background: rgb(255, 186, 103);
+    --counter-color: rgb(104, 91, 69);
+    --selection-border: rgba(255, 164, 79, 0.7);
+    --selection-background: rgba(255, 183, 88, 0.2);
+    --selected-border: rgb(255, 145, 0);
+} */
+
+:root.dark-theme {
+    --nav-background: rgb(0, 0, 0);
+    --nav-border: rgb(0, 0, 0);
+    --dots-one: rgb(0, 0, 0);
+    --dots-two: rgb(15, 15, 15);
+    --quick-start-label: rgb(0, 0, 0);
+    --quick-start-label-border: rgb(0, 0, 0);
+    --btn-border: rgb(255, 149, 20);
+    --btn-shadow: rgb(163, 77, 2);
+    --btn-background: rgb(0, 0, 0);
+    --btn-color: rgb(255, 226, 187);
+    --btn-hover: rgb(36, 36, 36);
+    --home-header: rgb(195, 183, 171);
+
+    --hand-background: rgb(71, 67, 62);
+    --hand-border: rgb(213, 183, 153);
+    --hand-shadow: rgb(255, 193, 122);
+
+    --settings-icon: rgb(169, 169, 169);
+    --settings-option-color: rgb(206, 190, 176);
+    --settings-option-hover: rgb(102, 94, 90);
+    --version-border: rgb(185, 175, 167);
+    --version-color: rgb(227, 214, 198);
+    --version-background: rgb(113, 107, 98);
+    --version-hover: rgb(113, 107, 98);
+
+    --hand-tab-background: black;
+    --hand-tab-border: white;
+    --hand-tab-color: rgb(166, 237, 255);
+
+    --setting-drpdwn-background: rgb(85, 80, 75);
+    --setting-drpdwn-shadow: rgb(97, 75, 43);
+    --setting-drpdwn-border: rgb(188, 143, 103);
+
+    --banner-background:rgb(57, 53, 48);
+    --banner-border: rgb(224, 195, 155);
+    --banner-shadow: rgb(118, 96, 81);
+    --error-background: rgb(168, 98, 98);
+    --error-border: rgb(255, 127, 127);
+    --error-shadow: rgb(180, 47, 47);
+    --error-color: rgb(226, 191, 191);
+    --deck-name-input-border: rgb(223, 182, 128);
+    --deck-name-input-background: rgb(227, 227, 227);
+    --deck-name-input-color: rgb(71, 65, 60);
+    --deck-card-border: transparent;
+    --card-num-color: rgb(105, 96, 89);
+    --search-bar-border: rgb(190, 161, 123);
+
+    --release-text-color: rgb(198, 183, 175);
+    --release-background: rgb(43, 42, 39);
+    --release-border: rgb(218, 187, 168);
+
+    --quick-start-background: rgb(62, 59, 55);
+    --quick-start-border: rgb(192, 170, 151);
+    --quick-start-header-border: rgb(104, 98, 88);
+    --how-to-background: rgb(32, 30, 28);
+    --how-to-content-background: rgb(115, 109, 101);
+    --how-to-content-border: rgb(147, 137, 128);
+    --how-to-color: rgb(232, 226, 220);
+    --notice-background: rgb(218, 143, 143);
+    --notice-border: rgb(141, 62, 62);
+    --notice-color: rgb(53, 44, 44);
+
+    --play-set-icon: rgb(200, 179, 159);
+    --play-options-background: rgb(106, 98, 90);
+    --play-options-border: rgb(255, 220, 171);
+    --play-options-shadow: rgb(134, 117, 91);
+    --play-options-color: rgb(255, 227, 189);
+    --font-size-color: rgb(207, 192, 172);
+    --font-size-border: rgb(188, 168, 141);
+    --adv-option-color: rgb(223, 213, 188);
+    --adv-option-background: rgb(134, 126, 107);
+    --adv-option-hover-color: rgb(240, 231, 219);
+    --adv-option-hover-background: rgb(134, 126, 107);
+    --graveyard-background: #484441;
+    --graveyard-border: #bdafa4;
+    --counter-background: rgb(255, 186, 103);
+    --counter-color: rgb(104, 91, 69);
+    --selection-border: rgba(255, 164, 79, 0.7);
+    --selection-background: rgba(255, 183, 88, 0.2);
+    --selected-border: rgb(255, 145, 0);
+}
+
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+html, body {
+    user-select: none;
+    overflow-y: scroll;
+}
+
+::-webkit-scrollbar {
+    display: none;
+}
+
+
+/* Font declarations moved to FontUrlDirective */
+
+#dots {
+    background-color: #eeeeee00;
+    background-repeat: repeat;
+    background-image: radial-gradient(circle, var(--dots-one) 30%, var(--dots-two) 31%);
+    background-size: 0.5em 0.5em;
+    background-position: 50% 50%;
+    width: 100vw;
+    height: 100vh;
+    position: fixed;
+    z-index: 5;
+}
+
+.quick-start {
+    position: absolute;
+    width: 100vw;
+    bottom: 0;
+    background: var(--quick-start-label);
+    z-index: 13;
+    margin: 0;
+    border-top: solid 3px var(--quick-start-label-border);
+    color: var(--how-to-color)
+}
+
+.quick-start h1 {
+    padding: 5px;
+    font-size: 1.3rem;
+    margin: 0;
+}
+
+.card-wrapper {
+    z-index: 10;
+}
+
+/* context menu */
+
+.custom-menu {
+    position: absolute;
+    background: #222;
+    color: white;
+    border-radius: 5px;
+    list-style: none;
+    padding: 5px 0;
+    z-index: 1000;
+}
+
+.custom-menu li {
+    padding: 8px 15px;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.custom-menu li:hover {
+    background: #444;
+}
+
+
+
+
+/* utility */
+
+.main-home {
+    width: 100vw;
+    height: 100vh;
+    box-sizing: border-box;
+    z-index: 20;
+}
+
+.home-container {
+    height: 100vh;
+    /*background: red;*/
+    position: relative;
+    z-index: 10;
+}
+
+.create-container {
+    height: 100vh;
+    position: relative;
+    z-index: 10;
+}
+
+.deck-container {
+    z-index: 10;
+    position: relative;
+    padding-bottom: 100px;
+}
+
+.left, .right {
+    width: 50%;
+    display: flex;
+    align-items: center; /* Centers text/content vertically */
+}
+
+.right {
+    justify-content: flex-end;
+}
+
+/* nav stylings */
+
+.purch-nav {
+    width: 100vw;
+    background: var(--nav-background);
+    padding: 10px 0;
+    position: fixed;
+    display: flex;
+    align-items: center;
+    font-family: "Exo 2", serif;
+    border-bottom: solid 2px var(--nav-border);
+    top : 0;
+    z-index: 100;
+}
+
+/* button stylings */
+
+.purch-btns {
+    z-index: 20;
+    position: absolute;
+    top: 80px;
+    left: 0;
+}
+
+.purch-btn {
+    margin: 0 5px;
+    padding: 10px 15px;
+    text-decoration: none;
+    border: solid 2px var(--btn-border);
+    /* border-radius: 10px; */
+    box-shadow: 0 3px var(--btn-shadow);
+    color: var(--btn-color);
+    background: var(--btn-background);
+}
+
+.purch-btn:hover {
+    background: var(--btn-hover);
+}
+
+/* header stylings */
+
+.purch-header {
+    color: var(--home-header);
+}
+
+.purch-header h1 {
+    padding: 2px 5px;
+    border-radius: 3px;
+    font-size: 55px;
+}
+
+.purch-header img {
+    width: 26px;
+    margin: 0 2px;
+}
+
+.save-btn {
+    top: 5px;
+    right: 0px;
+    position: absolute;
+}
+
+
+.settings-container {
+    position: relative;
+    display: inline-block;
+    cursor: pointer;
+    z-index: 200;
+    margin-right: 20px;
+}
+
+.settings-icon {
+    font-size: var(--play-options-font-size, 30px); /* Sync with buttons */
+    color: var(--settings-icon);
+    transition: color 0.3s ease;
+    cursor: pointer;
+}
+
+.settings-icon:hover {
+    color: #2d2d2d;
+}
+
+.settings-option {
+    display: block;
+    padding: 5px;
+    text-align: left;
+    color: var(--settings-option-color);
+    text-decoration: none;
+    transition: background 0.3s ease;
+    cursor: pointer;
+    z-index: 50;
+    font-size: 1rem;
+}
+
+.settings-option:hover {
+    background: var(--settings-option-hover);
+}
+
+.version {
+    padding: 3px 0px 3px 0px;
+    text-align: center;
+    margin-top: 5px;
+    border-top: solid 2px var(--version-border);
+    color: var(--version-color);
+    background: var(--version-background);
+}
+
+.version:hover {
+    background: var(--version-hover);
+    cursor:inherit;
+}
+
+.purch-btns .purch-btn {
+    font-size: 1rem;
+}
+  
+
+.loading-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.6);
+    color: #fff;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    z-index: 999;
+}
+
+.spinner {
+    border: 6px solid #f3f3f3;
+    border-top: 6px solid #3498db;
+    border-radius: 50%;
+    width: 60px;
+    height: 60px;
+    animation: spin 1s linear infinite;
+    margin-bottom: 20px;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+.hand-tab {
+    position: fixed;
+    z-index: 50;
+    bottom: 0;
+    font-size: var(--play-options-font-size, 20px);
+    right: 0;
+    padding: 5px;
+    border-top-left-radius: 10px;
+    background: var(--hand-tab-background);
+    border: solid 2px var(--hand-tab-border);
+    border-bottom: none;
+    border-right: none;
+    color: var(--hand-tab-color);
+    cursor: pointer;
+}
+
+.settings-dropdown {
+    padding-top: 10px;
+    position: fixed;
+    right: 0;
+    top: 48px;
+    background: var(--setting-drpdwn-background);
+    box-shadow: 0 3px var(--setting-drpdwn-shadow);
+    border-left: solid 2px var(--setting-drpdwn-border);
+    border-bottom: solid 2px var(--setting-drpdwn-border);
+    width: 120px;
+    z-index: 50;
+}
+
+
+/* Save Modal Styles */
+.save-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.6);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 200;
+    color: var(--home-header);
+    caret-color: black;
+}
+  
+.modal-content {
+    background: var(--banner-background) !important;
+    width: 50% !important;
+    padding: 20px 30px;
+    border-radius: 10px;
+    text-align: center;
+    border-radius: 10px !important;
+    border: solid 2px var(--banner-border) !important;
+    box-shadow: 0 5px var(--banner-shadow);
+}
+  
+.modal-content input {
+    width: 75%;
+    padding: 10px;
+    margin: auto;
+    margin-top: 15px;
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.saved-state-select {
+    margin-bottom: 20px;
+    -webkit-appearance: none;
+    padding: 0 0 0 10px;
+}
+
+
+/* Apply font to specific elements */
+.mplantin-text {
+    font-family: 'MPlantin', serif;
+}
+
+.mplantin-italic {
+    font-family: 'MPlantin', serif;
+    font-style: italic;
+}
+
+.beleren-bold {
+    font-family: 'Beleren Bold';
+}
+
+.opponent-board {
+    position: absolute !important;
+    background: var(--release-background);
+    z-index: 21 !important;
+    top: 70px !important;
+    width: 100%;
+    height: calc(100vh - 70px);
+  }
+
+.opponent-board h2 {
+    color: var(--home-header);
+    font-family: 'Beleren Bold';
+    font-size: 25px;
+    padding: 10px;
+    border-bottom: solid 2px var(--nav-border);
+    border-right: solid 2px var(--nav-border);
+    width: fit-content;
+    box-shadow: 0 3px var(--btn-shadow);
+    background: var(--nav-background);
+}
+
+  .hand {
+    z-index: 30 !important;
+  }
+
+  .play-container {
+    z-index: 20 !important;
+  }
+
+  .timer {
+    z-index: 20 !important;
+  }
+
+.notice {
+    background: var(--notice-background);
+    padding: 5px;
+    border-left: solid 5px var(--notice-border);
+    color: var(--notice-color);
+}
+  
+
+.opponent-board {
+    position: absolute !important;
+    background: var(--release-background);
+    z-index: 21 !important;
+    top: var(--opponents-position, 70px) !important;
+    width: 100%;
+    height: 100vh !important;
+  }
+
+
+  
+  
+  
+  
+  
+
+
+

@@ -1,0 +1,132 @@
+/* Create styles */
+
+.card-container {
+    position: relative;
+    margin: auto;
+    width: 400px;
+    height: 560px;
+    top: 120px;
+    background: rgb(74, 65, 59);
+    border-radius: 10px;
+    border: solid 3px rgb(177, 160, 144);
+    box-sizing: border-box;
+}
+
+#card {
+    width: 400px;
+}
+
+.card-text {
+    position: absolute;
+    z-index: 12;
+    display: flex;
+    align-items: center; 
+    box-sizing: border-box;
+}
+
+.card-text p {
+    margin: 0;
+}
+
+.name {
+    background: rgb(211, 178, 147);
+    border: solid 2px rgb(76, 67, 58);
+    top: 10px;
+    width: 380px;
+    margin-left: 7px;
+    padding: 3px 5px;
+    text-shadow: 1px 1px rgb(238, 238, 238);
+    border-radius: 5px;
+    font-size: 1.4rem;
+    border: solid 3px rgb(22, 21, 20);
+    box-sizing: border-box;
+}
+
+.mana {
+    right: 12px;
+    top: 10px;
+    padding: 7px 0;
+}
+
+.mtg-symbol {
+    z-index: 100;
+    vertical-align: middle;
+    margin: 3px 0 0 0;
+    box-shadow: 2px 2px rgba(0, 0, 0, 0.696);
+}
+
+
+
+.text-options {
+    position: absolute;
+    background: rgb(0, 0, 0);
+    border: solid 2px rgb(175, 243, 255);
+    padding: 20px;
+    top: 120px;
+    right: 20px;
+    z-index: 12;
+    border-radius: 5px;
+    box-shadow: 0 5px rgb(47, 87, 105);
+}
+
+.text-options p {
+    text-align: center;
+    cursor: pointer;
+    margin: 0px 5px 20px 5px;
+}
+
+.save-card {
+    position: absolute;
+    top: 120px;
+}
+
+.image-input {
+    position: absolute;
+    top: 200px;
+    left: 20px;
+    padding: 20px;
+    background: black;
+    color: white;
+    border-radius: 10px;
+    box-shadow: 0 5px rgb(60, 105, 135);
+    border: solid 3px rgb(166, 240, 255);
+}
+
+.card-art {
+    position: absolute;
+    top: 54px;
+    left: 40px;
+    width: 315px;
+    height: 260px;
+    overflow: hidden; /* Hide overflowing parts of the image */
+    z-index: 12;
+}
+
+.card-art img {
+    position: absolute;
+    top: 80%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+    /* Force the image to be at least as large as the container */
+    min-width: 100%;
+    min-height: 100%;
+
+    /* Allow the image to expand beyond its container if needed */
+    max-width: none;
+    max-height: none;
+}
+  
+
+.inline-symbol {
+    display: inline-block; /* Ensures the span only wraps around the image */
+    align-items: center;
+    vertical-align: middle;
+    margin: 0 2px;
+    width: fit-content; /* Ensures no extra width is added */
+}
+
+
+.symbol-dropdown {
+    width: 100px;
+}

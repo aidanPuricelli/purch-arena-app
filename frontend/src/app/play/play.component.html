@@ -1,0 +1,360 @@
+<app-navbar *ngIf="showNav" [links]="navLinks"></app-navbar>
+
+<!-- DECK SELECTION -->
+<div *ngIf="deckSelectFlag" class="deck-selection">
+  <label for="deckSelect">Select a Deck:</label>
+  <select id="deckSelect" [(ngModel)]="selectedDeck" (change)="onDeckSelected()">
+    <option *ngFor="let deck of deckNames" class="deck-opt" [value]="deck">{{ deck }}</option>
+  </select>
+</div>
+
+<!-- PLAY CONTAINER -->
+<div class="play-container"
+     (mousedown)="onMouseDown($event)"
+     (mousemove)="onMouseMove($event)"
+     (mouseup)="onMouseUp($event)"
+     (dragover)="onDragOver($event)"
+     (drop)="onDrop($event)"
+     style="position: relative;"
+     (click)="closeGraveyard()">
+
+  <!-- Selection Box -->
+  <div *ngIf="isDragging" class="selection-box"
+       [ngStyle]="{
+         'left.px': selectionBox.x,
+         'top.px': selectionBox.y,
+         'width.px': selectionBox.width,
+         'height.px': selectionBox.height
+       }">
+  </div>
+
+  <div *ngFor="let played of playCards"
+      class="played-card"
+      draggable="true"
+      (dragstart)="onDragStart($event, played, 'play')"
+      (contextmenu)="onPlayRightClick($event, played)"
+      (click)="toggleCardSelection(played, $event)"
+      (dblclick)="toggleTapCard(played, $event)"
+      [ngStyle]="{
+        'position': 'absolute',
+        'left.px': played.x,
+        'top.px': played.y
+      }"
+      [class.tapped]="played.tapped"
+      [class.selected]="selectedPlayCards.includes(played)">
+
+      <!-- Display for Normal Cards -->
+      <img *ngIf="played.card.image_uri" 
+      [src]="played.card.image_uri" 
+      alt="card image"
+      [ngStyle]="{'width.px': cardWidth, 'height.px': cardWidth * 1.4}">
+
+      <!-- Display for Tokens -->
+      <img *ngIf="!played.card.image_uri && played.card.image_uris?.normal" 
+      [src]="played.card.image_uris.normal" 
+      alt="token image"
+      [ngStyle]="{'width.px': cardWidth, 'height.px': cardWidth * 1.4}">
+
+
+
+      <!-- Counter Circle -->
+      <div class="counter-circle"
+          (click)="increaseCounter(played, $event)"
+          (contextmenu)="decreaseCounter(played, $event)"
+          *ngIf="played.counters !== undefined && played.counters > 0">
+        {{ played.counters }}
+      </div>
+
+      <!-- Tapped Icon -->
+      <span *ngIf="played.tapped" class="tap-icon material-symbols-outlined">
+        refresh
+      </span>
+  </div>
+
+</div>
+
+
+
+<!-- PLAY OPTIONS -->
+<div class="play-options animate__animated animate__fadeInRight">
+  <a class="purch-btn" href="#" (click)="drawCard(); $event.preventDefault()">DRAW</a>
+  <a *ngIf="!minimizedOptions" class="purch-btn" href="#" (click)="shuffleDeck(); $event.preventDefault()">SHUFFLE</a>
+  <a *ngIf="!minimizedOptions" class="purch-btn" href="#" (click)="showGraveyard(); $event.preventDefault()" title="Shortcut: ctrl + g">GRAVEYARD</a>
+  <a *ngIf="!minimizedOptions" class="purch-btn" href="#" (click)="mill(); $event.preventDefault()">MILL</a>
+  <a *ngIf="!minimizedOptions" class="purch-btn" href="#" (click)="toggleTutor(); $event.preventDefault()">TUTOR</a>
+  <a *ngIf="!minimizedOptions" class="purch-btn" href="#" (click)="toggleToken(); $event.preventDefault()">TOKEN</a>
+  <a *ngIf="!minimizedOptions" class="purch-btn" href="#" (click)="undoAction(); $event.preventDefault()">UNDO</a>
+  <a *ngIf="roomId" class="purch-btn" href="#" (click)="syncGameState(roomId); $event.preventDefault()">SYNC</a>
+  <a *ngIf="roomId" class="purch-btn" href="#" (click)="toggleOppBoards(); $event.preventDefault()">OPP</a>
+  <span class="settings-icon material-icons" (click)="toggleSettings()">settings</span>
+  <div *ngIf="showSettings" class="settings-dropdown">
+    <a (click)="newSeven()" class="settings-option">New Seven</a>
+    <a (click)="toggleResize()" class="settings-option">Resize Cards</a>
+    <a (click)="toggleDeckSelect()" class="settings-option">Select Deck</a>
+    <a (click)="toggleNav()" class="settings-option">Toggle Nav</a>
+    <a (click)="toggleHand()" class="settings-option">Toggle Hand</a>
+    <a *ngIf="!minimizedOptions" (click)="toggleOptions()" class="settings-option" title="Hint: double click the play options to do this automatically">Less options</a>
+    <a *ngIf="minimizedOptions" (click)="toggleOptions()" class="settings-option" title="Hint: double click the play options to do this automatically">More options</a>
+    <a (click)="toggleAdvanced()" class="settings-option">Advanced...</a>
+    <a *ngIf="advancedFlag" (click)="openSaveModal()" class="settings-option advanced-option">Save Game</a>
+    <a *ngIf="advancedFlag" (click)="openLoadModal()" class="settings-option advanced-option">Load Game</a>
+    <a *ngIf="advancedFlag" (click)="saveSettings()" title="This will save the current card width and font size" class="settings-option advanced-option">Save Settings</a>
+    <a *ngIf="advancedFlag" (click)="createRoom()" class="settings-option advanced-option">Create Room</a>
+    <a *ngIf="advancedFlag" (click)="openRoomModal()" class="settings-option advanced-option">Join Room</a>
+    <a *ngIf="advancedFlag" (click)="openPlayerIdModal()" class="settings-option advanced-option">Set Player ID</a>
+    <a *ngIf="advancedFlag" (click)="openUrlModal()" class="settings-option advanced-option">Set Base URL</a>
+
+
+    <div class="font-size-container">
+      <label for="fontSizeSlider">Font Size:</label>
+      <input id="fontSizeSlider" type="range" min="10" max="24" [(ngModel)]="playOptionsFontSize" (input)="updateFontSize()">
+    </div>
+
+    <!-- Add this button in the settings dropdown or nav section -->
+    <button class="settings-button" (click)="toggleFullScreen()" title="Toggle Full Screen">
+      TEST
+      <i class="fas" [class.fa-expand]="!isFullScreen" [class.fa-compress]="isFullScreen"></i>
+    </button>
+  </div>
+
+  <!-- CARD SEARCH DROPDOWN (TUTOR) -->
+  <div *ngIf="showTutor" class="card-selection">
+    <label for="cardSelect">Search for a Card:</label>
+    <select id="cardSelect" [(ngModel)]="selectedDeckCard">
+      <option *ngFor="let card of deck" [ngValue]="card">{{ card.name }}</option>
+    </select>
+    <button class="purch-btn" (click)="addToHandFromDeck()">Add to Hand</button>
+  </div>
+
+  <!-- TOKEN SELECTION (TOKEN) -->
+  <div *ngIf="showToken" class="token-selection">
+    <label for="tokenSelect">Select a Token:</label>
+    <select id="tokenSelect" [(ngModel)]="selectedToken">
+      <option *ngFor="let token of tokenTypes" [value]="token.name">{{ token.name }}</option>
+    </select>
+    <button class="purch-btn" (click)="placeTokenInPlay()">Place Token</button>
+  </div>
+
+  <div class="resize-container" *ngIf="resizeFlag">
+    <input id="cardSize" type="range" min="50" max="250" [(ngModel)]="cardWidth">
+  </div>
+</div>
+
+
+
+<!-- HAND -->
+<div class="hand" *ngIf="handFlag && deck.length > 0">
+  <div class="d-flex flex-wrap cards justify-content-center">
+    <div *ngFor="let card of hand" class="card animate__animated animate__fadeInDown"
+         draggable="true"
+         (dragstart)="onDragStart($event, card, 'hand')"
+         (contextmenu)="onRightClick($event, card)">
+      <img [src]="card.image_uri" alt="card image" [ngStyle]="{'width.px': cardWidth }">
+    </div>
+  </div>
+</div>
+
+<div class="graveyard" *ngIf="showGrave">
+    <div class="d-flex flex-wrap cards justify-content-center">
+      <div *ngFor="let card of graveyard" class="card" (contextmenu)="onGraveRightClick($event, card)">
+        <img [src]="card.image_uri" alt="card image">
+      </div>
+    </div>
+</div>
+  
+
+<!-- Custom Context Menu for Hand Cards -->
+<div class="context-menu" *ngIf="contextMenuVisible" 
+     [ngStyle]="{'top.px': contextMenuY, 'left.px': contextMenuX}">
+  <ul>
+    <li (click)="discardSelectedCard()">Discard</li>
+    <li (click)="onTop()">Top of Library</li>
+    <li (click)="onBottom()">Bottom of Library</li>
+  </ul>
+</div>
+
+<!-- Custom Context Menu for Play Area Cards -->
+<div class="context-menu play-context-menu" *ngIf="playContextMenuVisible" 
+     [ngStyle]="{'top.px': playContextMenuY, 'left.px': playContextMenuX}">
+  <ul>
+    <li *ngIf="!showOpponentsBoard" (click)="tapSelectedCard()">Tap</li>
+    <li *ngIf="!showOpponentsBoard" (click)="untapSelectedCard()">Untap</li>
+    <li *ngIf="!showOpponentsBoard" (click)="sendToGraveyardSelectedCard()">Graveyard</li>
+    <li *ngIf="!showOpponentsBoard" (click)="exileSelectedCard()">Exile</li>
+    <li *ngIf="!showOpponentsBoard" (click)="backToHand()">Back to Hand</li>
+    <li *ngIf="!showOpponentsBoard" (click)="increaseCounterOnSelectedCards($event)">Add Counter</li>
+    <li *ngIf="!showOpponentsBoard" (click)="decreaseCounterOnSelectedCards($event)">Remove Counter</li>
+    <li (click)="zoomSelectedCard()" *ngIf="selectedPlayCards.length === 1">Zoom</li>
+  </ul>
+</div>
+
+
+<!-- Custom Context Menu for Graveyard Cards -->
+<div class="context-menu grave-context-menu" *ngIf="graveContextMenuVisible" 
+     [ngStyle]="{'top.px': graveContextMenuY, 'left.px': graveContextMenuX}">
+  <ul>
+    <li (click)="handFromGraveyard()">Return to hand</li>
+    <li (click)="exileFromGraveyard()">Send to Exile</li>
+    <li (click)="playFromGraveyard()">Return to Battle</li>
+  </ul>
+</div>
+
+<!-- LIFE COUNTER -->
+<div class="life-container animate__animated animate__fadeInDown" 
+(click)="increaseLife()"
+(contextmenu)="decreaseLife($event)">
+  <div class="life-counter">{{ life }}</div>
+</div>
+
+<!-- ZOOMED CARD OVERLAY -->
+<div *ngIf="zoomedCard" class="zoom-overlay" (click)="closeZoom()">
+  <img [src]="zoomedCard.image_uri || 'https://example.com/default-card.jpg'" 
+       [alt]="zoomedCard.name" 
+       class="zoomed-card" />
+</div>
+
+<!-- Modal for Saving Game -->
+<div class="save-modal" *ngIf="showSaveModal">
+  <div class="modal-content">
+    <input type="text" [(ngModel)]="saveGameName" placeholder="Enter a name for your save..." />
+    <div class="modal-actions">
+      <button class="purch-btn" (click)="saveState()">Save</button>
+      <button class="purch-btn" (click)="closeSaveModal()">Cancel</button>
+    </div>
+  </div>
+</div>
+
+<!-- Modal for Joining Room -->
+<div class="save-modal" *ngIf="showRoomModal">
+  <div class="modal-content">
+    <input type="text" [(ngModel)]="roomId" placeholder="Enter the room code..." />
+    <div class="modal-actions">
+      <button class="purch-btn" (click)="joinRoom(roomId)">Join Room</button>
+      <button class="purch-btn cancel-btn" (click)="closeRoomModal()">Cancel</button>
+      <button class="purch-btn other-btn" (click)="copyRoomIdToClipboard()">Copy</button>
+    </div>
+  </div>
+</div>
+
+<!-- Modal for Setting Player Id -->
+<div class="save-modal" *ngIf="showPlayerIdModal">
+  <div class="modal-content">
+    <input type="text" [(ngModel)]="playerId" placeholder="Enter your player ID..." />
+    <div class="modal-actions">
+      <button class="purch-btn" (click)="setPlayerId(playerId)">Set ID</button>
+      <button class="purch-btn" (click)="closePlayerIdModal()">Cancel</button>
+    </div>
+  </div>
+</div>
+
+<!-- Modal for Setting URL -->
+<div class="save-modal" *ngIf="showUrlModal">
+  <div class="modal-content">
+    <div class="input-container">
+      <input type="text" [(ngModel)]="serverPort" placeholder="Enter base url to connect to..." />
+    </div>
+    <div class="modal-actions">
+      <button class="purch-btn other-btn" (click)="setUrl(serverPort)">Set URL</button>
+      <button class="purch-btn cancel-btn" (click)="closeUrlModal()">Cancel</button>
+      <button class="purch-btn other-btn" (click)="copyUrlToClipboard()">Copy</button>
+    </div>
+  </div>
+</div>
+
+
+<!-- Modal for Loading Game -->
+<div class="save-modal" *ngIf="showLoadModal">
+  <div class="modal-content">
+
+    <!-- Dropdown of saved states -->
+    <select [(ngModel)]="selectedSavedState" class="saved-state-select">
+      <option *ngFor="let state of savedStates" [value]="state">{{ state }}</option>
+    </select>
+
+    <div class="modal-actions">
+      <button class="purch-btn" (click)="loadSelectedState()">Load</button>
+      <button class="purch-btn" (click)="closeLoadModal()">Cancel</button>
+    </div>
+  </div>
+</div>
+
+<div *ngIf="showTimer && myTimer" (click)="toggleTimer()" class="timer animate__animated animate__fadeInLeft">
+  <p *ngIf="timeLeft> 0" class="purch-btn">{{ formatTime(timeLeft) }}</p>
+</div>
+<div *ngIf="!showTimer && myTimer" (click)="toggleTimer()" class="timer">
+  <span class="material-symbols-outlined purch-btn">
+    timer
+    </span>
+</div>
+
+<div *ngIf="showOpponentsBoard" class="opp-container opponent-board">
+  <div *ngFor="let opponent of opponentBoards" class="">
+    <h2>{{ opponent.playerId }}</h2>
+    <div *ngFor="let opponentCard of opponent.playCards"
+      class="played-card"
+      draggable="true"
+      (dragstart)="onDragStart($event, opponentCard, 'play')"
+      (contextmenu)="onPlayRightClick($event, opponentCard)"
+      [ngStyle]="{
+        'position': 'absolute',
+        'left.px': opponentCard.x,
+        'top.px': opponentCard.y
+      }"
+      [class.tapped]="opponentCard.tapped">
+  
+        <!-- Display for Normal Cards -->
+        <img *ngIf="opponentCard.card.image_uri" 
+        [src]="opponentCard.card.image_uri" 
+        alt="card image"
+        [ngStyle]="{'width.px': cardWidth, 'height.px': cardWidth * 1.4}">
+  
+        <!-- Display for Tokens -->
+        <img *ngIf="!opponentCard.card.image_uri && opponentCard.card.image_uris?.normal" 
+        [src]="opponentCard.card.image_uris.normal" 
+        alt="token image"
+        [ngStyle]="{'width.px': cardWidth, 'height.px': cardWidth * 1.4}">
+  
+  
+  
+        <!-- Counter Circle -->
+        <div class="counter-circle"
+            *ngIf="opponentCard.counters !== undefined && opponentCard.counters > 0">
+          {{ opponentCard.counters }}
+        </div>
+
+        <!-- Tapped Icon -->
+        <span *ngIf="opponentCard.tapped" class="tap-icon material-symbols-outlined">
+          refresh
+        </span>
+    </div>
+  </div>
+</div>
+
+<!-- Ngrok Token Modal -->
+<div class="modal" [ngClass]="{'show': showNgrokTokenModal}" *ngIf="showNgrokTokenModal" style="display: block;">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Enter Ngrok Token</h5>
+        <button type="button" class="btn-close" (click)="closeNgrokTokenModal()"></button>
+      </div>
+      <div class="modal-body">
+        <p>To create a room, you need an ngrok authentication token. Players joining your room do not need a token.</p>
+        <p>You can get a free token at <a href="https://dashboard.ngrok.com/signup" target="_blank">https://dashboard.ngrok.com/signup</a></p>
+        <div class="form-group">
+          <label for="ngrokToken">Ngrok Auth Token:</label>
+          <input type="text" class="form-control" id="ngrokToken" [(ngModel)]="ngrokToken" placeholder="Enter your ngrok token">
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" (click)="closeNgrokTokenModal()">Cancel</button>
+        <button type="button" class="btn btn-primary" (click)="saveNgrokToken()">Save & Create Room</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+

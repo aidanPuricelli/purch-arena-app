@@ -1,0 +1,24 @@
+<div class="click-container" (click)="hideContextMenu()">
+    <div class="input-group search-container">
+        <input type="text" class="form-control" placeholder="Terror of the..." [(ngModel)]="searchQuery">
+        <button class="purch-btn search-btn" type="button" (click)="onSearch()">
+            <span class="material-icons">search</span>
+        </button> 
+    </div>
+    
+    
+    <div class="card-results mt-3">
+        <div *ngIf="cardImages.length > 0">
+            <div class="d-flex flex-wrap cards justify-content-center">
+                <div *ngFor="let card of cardImages" class="card-wrapper">
+                    <img *ngIf="card.image_uri" [src]="card.image_uri" class="card-img" (contextmenu)="onRightClick($event, card)">
+                </div>
+            </div>
+        </div>        
+    </div>
+    
+    <ul class="custom-menu" *ngIf="contextMenuVisible" [style.top.px]="menuY" [style.left.px]="menuX">
+        <li (click)="saveImage()">Add to Deck</li>
+    </ul>
+</div>
+

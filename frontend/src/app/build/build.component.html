@@ -1,0 +1,5 @@
+<app-navbar [links]="navLinks"></app-navbar>
+<div class="build-container container mt-5">
+    <app-search [selectedDeck]="selectedDeck"></app-search>
+    <app-deck [selectedDeck]="selectedDeck" (deckSelected)="onDeckSelected($event)"></app-deck>
+</div>

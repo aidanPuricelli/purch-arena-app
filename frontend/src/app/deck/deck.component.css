@@ -1,0 +1,150 @@
+.context-menu {
+    position: fixed;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    z-index: 1000;
+    padding: 5px;
+  }
+  
+  
+.context-menu ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.context-menu li {
+  padding: 5px 10px;
+  cursor: pointer;
+}
+
+.context-menu li:hover {
+  background-color: #eee;
+}
+
+.settings-container {
+  position: absolute;
+  top: 10px;
+  right: 0px;
+}
+
+.settings-dropdown {
+  top: 64px;
+  width: 200px;
+  border: solid 2px var(--setting-drpdwn-border);
+  box-shadow: 0 3px var(--setting-drpdwn-shadow);
+  border-top: none;
+  right: 0px;
+  padding: 0;
+  box-sizing: content-box;
+  position: absolute;
+}
+
+.settings-option.disabled {
+  pointer-events: none;
+  color: gray;
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+
+.banner {
+  color: white;
+  z-index: 10;
+  position: relative;
+  width: 100%;
+  background: var(--banner-background);
+  margin: 30px 0;
+  padding: 10px;
+  border: solid 3px var(--banner-border);
+  box-shadow: 0 2px var(--banner-shadow);
+}
+
+.no-cards {
+  position: relative;
+  z-index: 5;
+  background: var(--error-background);
+  width: 50%;
+  margin: auto;
+  text-align: center;
+  padding: 10px;
+  border: solid 2px var(--error-border);
+  color: var(--error-color);
+  box-shadow: 0 3px var(--error-shadow);
+}
+
+.error {
+  position: absolute;
+  top: 103px;
+  left: 25%;
+}
+
+.deck-option {
+  margin: 0;
+}
+
+.deck-name {
+  padding: 5px 5px 5px 10px;
+  border: solid 2px var(--deck-name-input-border);
+  background: var(--deck-name-input-background);
+  color: var(--deck-name-input-color);
+}
+
+.settings-icon {
+  border: none;
+  box-shadow: none;
+  margin: 0;
+  padding: 0;
+  position: absolute;
+  top: -5px;
+  right: -15px;
+}
+
+.drpdwn {
+  /* appearance: none; */
+  -moz-appearance: none;
+  -webkit-appearance: none;
+  padding: 3px 30px;
+  border-radius: 0;
+  background: var(--btn-background);
+  border-color: var(--setting-drpdwn-border);
+  color: var(--settings-option-color);
+}
+
+li {
+  list-style: none;
+}
+  
+.deck-card-wrapper {
+  z-index: 5;
+  position: relative;
+}
+
+.card-img {
+  width: 200px !important;
+  height: auto;
+  margin: 5px;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s;
+  z-index: 5;
+  border: solid 2px var(--deck-card-border);
+}
+
+.card-img:hover {
+  transform: scale(1.05);
+}
+
+.deck-container ul {
+  padding: 0;
+}
+
+.cardNum {
+  padding: 10px;
+  border-radius: 10px;
+  position: absolute;
+  right: 0px;
+  top: 30px;
+  font-size: 20px;
+  font-weight: bolder;
+  color: var(--card-num-color);
+}
