@@ -1,0 +1,20 @@
+{
+  "Glarb": {
+    "name": "Glarb, Calamity's Augur",
+    "mana_cost": "{B}{G}{U}",
+    "type_line": "Legendary Creature — Frog Wizard Noble",
+    "image_uri": "https://cards.scryfall.io/normal/front/f/f/ffc70b2d-5a3a-49ea-97db-175a62248302.jpg?1721427068"
+  },
+  "Tivit": {
+    "name": "Tivit, Seller of Secrets",
+    "mana_cost": "{3}{W}{U}{B}",
+    "type_line": "Legendary Creature — Sphinx Rogue",
+    "image_uri": "https://cards.scryfall.io/normal/front/9/2/9235977e-a999-4ed0-83a3-742be87b13bb.jpg?1673481721"
+  },
+  "Hashaton": {
+    "name": "Hashaton, Scarab's Fist",
+    "mana_cost": "{W}{B}",
+    "type_line": "Legendary Creature — Zombie Wizard",
+    "image_uri": "https://cards.scryfall.io/normal/front/0/2/02645651-cd55-4bd0-8a4d-fa257270a0e0.jpg?1739303903"
+  }
+}

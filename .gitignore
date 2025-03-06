@@ -1,0 +1,80 @@
+# Dependencies
+node_modules/
+/frontend/node_modules/
+/server/node_modules/
+
+# Angular build output
+/frontend/dist/
+/dist/
+
+# Electron build output
+/release/
+*.exe
+*.dmg
+*.app
+*.msi
+
+# IDE - VSCode
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+.history/*
+
+# IDE - WebStorm/IntelliJ
+.idea/
+*.iml
+*.iws
+*.ipr
+
+# misc
+.DS_Store
+Thumbs.db
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# Debug logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+debug.log
+
+# Angular specific
+.angular/
+.sass-cache/
+connect.lock
+coverage/
+libpeerconnection.log
+testem.log
+/typings/
+
+# SQLite database files
+*.sqlite
+*.sqlite3
+*.db
+
+# Electron specific
+/electron-builder.yml
+/electron/dist/
+
+# System Files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Temporary files
+*.swp
+*.swo
+*~
+
+# Logs
+logs
+*.log 
